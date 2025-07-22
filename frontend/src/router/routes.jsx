@@ -29,6 +29,13 @@ const Profile = lazy(() => import('@/pages/Profile'));
 
 const About = lazy(() => import('@/pages/About'));
 
+const Queries = lazy(() => import('@/pages/Queries'));
+const QueriesRead = lazy(() => import('@/pages/Queries/QueriesRead'));
+const QueriesCreate = lazy(() => import('@/pages/Queries/QueriesCreate'));
+const QueriesUpdate = lazy(() => import('@/pages/Queries/QueriesUpdate'));
+
+
+
 let routes = {
   expense: [],
   default: [
@@ -122,6 +129,22 @@ let routes = {
     {
       path: '/profile',
       element: <Profile />,
+    },
+      {
+      path: '/queries',
+      element: <Queries />,
+    },
+        {
+      path: '/queries/read/:id',
+      element: <QueriesRead />,
+    },
+       {
+      path: '/queries/create',
+      element: <QueriesCreate />,
+    },
+     {
+      path: '/queries/update/:id',
+      element: <QueriesUpdate />,
     },
     {
       path: '*',

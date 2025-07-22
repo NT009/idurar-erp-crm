@@ -224,6 +224,7 @@ const lang = {
   currency: 'Currency',
   payment_mode: 'Payment Mode',
   taxes: 'Taxes',
+  queries:"Queries",
   about: 'About',
   profile_settings: 'Profile Settings',
   app_settings: 'App Settings',
@@ -450,6 +451,11 @@ const lang = {
   offers: 'Offers',
   proforma_invoices: 'quote',
   search: 'search',
+  queries_list:"Queries list",
+  add_new_query:"add new query",
+  created_date:"Created Date",
+  resolution:"Resolution",
+  add_note:"Add Note",
 };
 
 export default lang;
