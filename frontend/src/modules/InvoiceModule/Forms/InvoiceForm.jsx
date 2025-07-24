@@ -172,8 +172,8 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
           </Form.Item>
         </Col>
       </Row>
-      <Divider dashed />
-      <Row gutter={[12, 12]} style={{ position: 'relative' }}>
+      <Divider  />
+      {/* <Row gutter={[12, 12]} style={{ position: 'relative' }}>
         <Col className="gutter-row" span={5}>
           <p>{translate('Item')}</p>
         </Col>
@@ -189,7 +189,7 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
         <Col className="gutter-row" span={5}>
           <p>{translate('Total')}</p>
         </Col>
-      </Row>
+      </Row> */}
       <Form.List name="items">
         {(fields, { add, remove }) => (
           <>

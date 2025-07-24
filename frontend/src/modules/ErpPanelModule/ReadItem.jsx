@@ -33,6 +33,7 @@ const Item = ({ item, currentErp }) => {
           <strong>{item.itemName}</strong>
         </p>
         <p>{item.description}</p>
+        <p><span style={{ fontWeight: '700' }}>Notes: </span>{item?.notes}</p>
       </Col>
       <Col className="gutter-row" span={4}>
         <p
