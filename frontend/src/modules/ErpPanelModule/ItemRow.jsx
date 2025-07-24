@@ -4,12 +4,13 @@ import { Form, Input, InputNumber, Row, Col } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { useMoney, useDate } from '@/settings';
 import calculate from '@/utils/calculate';
+import useLanguage from '@/locale/useLanguage';
 
 export default function ItemRow({ field, remove, current = null }) {
   const [totalState, setTotal] = useState(undefined);
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
-
+  const translate = useLanguage();
   const money = useMoney();
   const updateQt = (value) => {
     setQuantity(value);
@@ -52,9 +53,10 @@ export default function ItemRow({ field, remove, current = null }) {
   }, [price, quantity]);
 
   return (
-    <Row gutter={[12, 12]} style={{ position: 'relative' }}>
-      <Col className="gutter-row" span={5}>
+    <Row gutter={[12, 12]}>
+      <Col xs={24} md={6}>
         <Form.Item
+          label={translate('Item')}
           name={[field.name, 'itemName']}
           rules={[
             {
@@ -70,50 +72,77 @@ export default function ItemRow({ field, remove, current = null }) {
           <Input placeholder="Item Name" />
         </Form.Item>
       </Col>
-      <Col className="gutter-row" span={7}>
-        <Form.Item name={[field.name, 'description']}>
-          <Input placeholder="description Name" />
+
+      <Col xs={24} md={6}>
+        <Form.Item label={translate('Description')} name={[field.name, 'description']}>
+          <Input placeholder="Description" />
         </Form.Item>
       </Col>
-      <Col className="gutter-row" span={3}>
-        <Form.Item name={[field.name, 'quantity']} rules={[{ required: true }]}>
-          <InputNumber style={{ width: '100%' }} min={0} onChange={updateQt} />
+
+      <Col xs={12} md={4}>
+        <Form.Item
+          label={translate('Quantity')}
+          name={[field.name, 'quantity']}
+          rules={[{ required: true, message: 'Quantity is required' }]}
+        >
+          <InputNumber min={0} onChange={updateQt} style={{ width: '100%' }} />
         </Form.Item>
       </Col>
-      <Col className="gutter-row" span={4}>
-        <Form.Item name={[field.name, 'price']} rules={[{ required: true }]}>
+
+      <Col xs={12} md={4}>
+        <Form.Item
+          label={translate('Price')}
+          name={[field.name, 'price']}
+          rules={[{ required: true, message: 'Price is required' }]}
+        >
           <InputNumber
             className="moneyInput"
             onChange={updatePrice}
             min={0}
             controls={false}
+            style={{ width: '100%' }}
             addonAfter={money.currency_position === 'after' ? money.currency_symbol : undefined}
             addonBefore={money.currency_position === 'before' ? money.currency_symbol : undefined}
           />
         </Form.Item>
       </Col>
-      <Col className="gutter-row" span={5}>
-        <Form.Item name={[field.name, 'total']}>
-          <Form.Item>
-            <InputNumber
-              readOnly
-              className="moneyInput"
-              value={totalState}
-              min={0}
-              controls={false}
-              addonAfter={money.currency_position === 'after' ? money.currency_symbol : undefined}
-              addonBefore={money.currency_position === 'before' ? money.currency_symbol : undefined}
+
+      <Col xs={12} md={4}>
+        <Form.Item label={translate('Total')}>
+          <InputNumber
+            readOnly
+            className="moneyInput"
+            value={totalState}
+            min={0}
+            controls={false}
+            style={{ width: '100%' }}
+          
+            addonAfter={money.currency_position === 'after' ? money.currency_symbol : undefined}
+            addonBefore={money.currency_position === 'before' ? money.currency_symbol : undefined}
               formatter={(value) =>
-                money.amountFormatter({ amount: value, currency_code: money.currency_code })
-              }
-            />
-          </Form.Item>
+              money.amountFormatter({
+                amount: value,
+                currency_code: money.currency_code,
+              })
+            }
+          />
         </Form.Item>
       </Col>
 
-      <div style={{ position: 'absolute', right: '-20px', top: ' 5px' }}>
-        <DeleteOutlined onClick={() => remove(field.name)} />
-      </div>
+      <Col xs={24} md={6}>
+        <Form.Item label={translate('Notes')} name={[field.name, 'notes']}>
+          <Input.TextArea rows={2} placeholder="Notes..." />
+        </Form.Item>
+      </Col>
+
+      <Col xs={2} md={1}>
+        <Form.Item label=" ">
+          <DeleteOutlined
+            onClick={() => remove(field.name)}
+            style={{ color: 'red', fontSize: 18, cursor: 'pointer' }}
+          />
+        </Form.Item>
+      </Col>
     </Row>
   );
 }
