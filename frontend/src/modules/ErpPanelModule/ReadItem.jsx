@@ -9,6 +9,7 @@ import {
   CloseCircleOutlined,
   RetweetOutlined,
   MailOutlined,
+  FileTextOutlined,
 } from '@ant-design/icons';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -23,8 +24,9 @@ import { DOWNLOAD_BASE_URL } from '@/config/serverApiConfig';
 import { useMoney, useDate } from '@/settings';
 import useMail from '@/hooks/useMail';
 import { useNavigate } from 'react-router-dom';
+import GenerateSummaryModal from './GenerateSummaryModal';
 
-const Item = ({ item, currentErp,isItemsNotes }) => {
+const Item = ({ item, currentErp, isItemsNotes }) => {
   const { moneyFormatter } = useMoney();
   return (
     <Row gutter={[12, 0]} key={item._id}>
@@ -104,6 +106,7 @@ export default function ReadItem({ config, selectedItem }) {
   const [itemslist, setItemsList] = useState([]);
   const [currentErp, setCurrentErp] = useState(selectedItem ?? resetErp);
   const [client, setClient] = useState({});
+  const [summaryModal, setSummaryModal] = useState(false);
 
   useEffect(() => {
     if (currentResult) {
@@ -154,6 +157,20 @@ export default function ReadItem({ config, selectedItem }) {
             icon={<CloseCircleOutlined />}
           >
             {translate('Close')}
+          </Button>,
+          <Button
+            key={`${uniqueId()}`}
+            onClick={() => {
+              setSummaryModal(true);
+            }}
+            disabled={!currentErp?.isGenNotesSummaryAvail}
+            type="primary"
+            icon={<FileTextOutlined />}
+            style={{
+              display: entity === 'invoice' ? 'inline-block' : 'none',
+            }}
+          >
+            {translate('generate_summary')}
           </Button>,
           <Button
             key={`${uniqueId()}`}
@@ -246,6 +263,21 @@ export default function ReadItem({ config, selectedItem }) {
         <Descriptions.Item label={translate('email')}>{client.email}</Descriptions.Item>
         <Descriptions.Item label={translate('Phone')}>{client.phone}</Descriptions.Item>
       </Descriptions>
+      <Col
+        span={24}
+        style={{
+          display: entity === 'invoice' ? 'block' : 'none',
+        }}
+      >
+        <p
+          style={{
+            color: '#0050c8',
+          }}
+        >
+          Most Recent Notes Summary:
+        </p>
+        <p>{currentErp.itemsNotesSummary}</p>
+      </Col>
       <Divider />
       <Row gutter={[12, 0]}>
         <Col className="gutter-row" span={11}>
@@ -323,6 +355,17 @@ export default function ReadItem({ config, selectedItem }) {
           </Col>
         </Row>
       </div>
+      {summaryModal && entity === 'invoice' && (
+        <GenerateSummaryModal
+          isOpen={summaryModal}
+          handleClose={() => {
+            setSummaryModal(false);
+            window.location.reload();
+          }}
+          entity={entity}
+          id={currentResult?._id}
+        />
+      )}
     </>
   );
 }
