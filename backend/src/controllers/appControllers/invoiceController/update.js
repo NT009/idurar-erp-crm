@@ -36,6 +36,18 @@ const update = async (req, res) => {
       message: 'Items cannot be empty',
     });
   }
+  // Compare item notes
+  const notesChanged = () => {
+    if (!previousInvoice?.items?.length || !items?.length) return false;
+    return items.some((newItem, index) => {
+      const oldItem = previousInvoice?.items[index];
+      return oldItem?.notes !== newItem?.notes;
+    });
+  };
+
+  if (notesChanged()) {
+    body['isGenNotesSummaryAvail'] = true;
+  }
 
   // default
   let subTotal = 0;
