@@ -15,6 +15,7 @@ export default function InvoiceUpdate() {
 
   const configPage = {
     entity,
+    isItemsNotes: true,
     ...Labels,
   };
   return <UpdateInvoiceModule config={configPage} />;

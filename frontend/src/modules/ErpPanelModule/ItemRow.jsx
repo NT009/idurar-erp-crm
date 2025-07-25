@@ -53,7 +53,7 @@ export default function ItemRow({ field, remove, current = null, isItemsNotes = 
   }, [price, quantity]);
 
   return (
-    <Row gutter={[12, 12]} align={"top"}>
+    <Row gutter={[12, 12]} align={!isItemsNotes?"top":"middle"}>
       <Col xs={24} md={isItemsNotes ? 6 : 5}>
         <Form.Item
           {...(isItemsNotes ? { label: translate('Item') } : {})}

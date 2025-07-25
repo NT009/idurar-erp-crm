@@ -27,10 +27,10 @@ export default function InvoiceForm({ subTotal = 0, current = null, config }) {
     return <></>;
   }
 
-  return <LoadInvoiceForm subTotal={subTotal} current={current} />;
+  return <LoadInvoiceForm subTotal={subTotal} current={current} isItemsNotes={isItemsNotes} />;
 }
 
-function LoadInvoiceForm({ subTotal = 0, current = null }) {
+function LoadInvoiceForm({ subTotal = 0, current = null, isItemsNotes }) {
   const translate = useLanguage();
   const { dateFormat } = useDate();
   const { last_invoice_number } = useSelector(selectFinanceSettings);
@@ -195,7 +195,13 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
         {(fields, { add, remove }) => (
           <>
             {fields.map((field) => (
-              <ItemRow key={field.key} remove={remove} field={field} current={current} isItemsNotes={isItemsNotes}></ItemRow>
+              <ItemRow
+                key={field.key}
+                remove={remove}
+                field={field}
+                current={current}
+                isItemsNotes={isItemsNotes}
+              ></ItemRow>
             ))}
             <Form.Item>
               <Button
