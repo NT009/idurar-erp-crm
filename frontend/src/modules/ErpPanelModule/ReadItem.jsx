@@ -24,7 +24,7 @@ import { useMoney, useDate } from '@/settings';
 import useMail from '@/hooks/useMail';
 import { useNavigate } from 'react-router-dom';
 
-const Item = ({ item, currentErp }) => {
+const Item = ({ item, currentErp,isItemsNotes }) => {
   const { moneyFormatter } = useMoney();
   return (
     <Row gutter={[12, 0]} key={item._id}>
@@ -33,7 +33,12 @@ const Item = ({ item, currentErp }) => {
           <strong>{item.itemName}</strong>
         </p>
         <p>{item.description}</p>
-        <p><span style={{ fontWeight: '700' }}>Notes: </span>{item?.notes}</p>
+        {isItemsNotes && (
+          <p>
+            <span style={{ fontWeight: '700' }}>Notes: </span>
+            {item.notes}
+          </p>
+        )}
       </Col>
       <Col className="gutter-row" span={4}>
         <p
@@ -70,7 +75,7 @@ const Item = ({ item, currentErp }) => {
 
 export default function ReadItem({ config, selectedItem }) {
   const translate = useLanguage();
-  const { entity, ENTITY_NAME } = config;
+  const { entity, ENTITY_NAME, isItemsNotes = false } = config;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -278,7 +283,7 @@ export default function ReadItem({ config, selectedItem }) {
         <Divider />
       </Row>
       {itemslist.map((item) => (
-        <Item key={item._id} item={item} currentErp={currentErp}></Item>
+        <Item key={item._id} item={item} currentErp={currentErp} isItemsNotes={isItemsNotes}></Item>
       ))}
       <div
         style={{
