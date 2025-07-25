@@ -6,7 +6,7 @@ import { useMoney, useDate } from '@/settings';
 import calculate from '@/utils/calculate';
 import useLanguage from '@/locale/useLanguage';
 
-export default function ItemRow({ field, remove, current = null }) {
+export default function ItemRow({ field, remove, current = null, isItemsNotes = false }) {
   const [totalState, setTotal] = useState(undefined);
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
@@ -53,10 +53,10 @@ export default function ItemRow({ field, remove, current = null }) {
   }, [price, quantity]);
 
   return (
-    <Row gutter={[12, 12]}>
-      <Col xs={24} md={6}>
+    <Row gutter={[12, 12]} align={"top"}>
+      <Col xs={24} md={isItemsNotes ? 6 : 5}>
         <Form.Item
-          label={translate('Item')}
+          {...(isItemsNotes ? { label: translate('Item') } : {})}
           name={[field.name, 'itemName']}
           rules={[
             {
@@ -73,15 +73,18 @@ export default function ItemRow({ field, remove, current = null }) {
         </Form.Item>
       </Col>
 
-      <Col xs={24} md={6}>
-        <Form.Item label={translate('Description')} name={[field.name, 'description']}>
+      <Col xs={24} md={isItemsNotes ? 6 : 7}>
+        <Form.Item
+          {...(isItemsNotes ? { label: translate('Description') } : {})}
+          name={[field.name, 'description']}
+        >
           <Input placeholder="Description" />
         </Form.Item>
       </Col>
 
-      <Col xs={12} md={4}>
+      <Col xs={12} md={isItemsNotes ? 4 : 3}>
         <Form.Item
-          label={translate('Quantity')}
+          {...(isItemsNotes ? { label: translate('Quantity') } : {})}
           name={[field.name, 'quantity']}
           rules={[{ required: true, message: 'Quantity is required' }]}
         >
@@ -91,7 +94,7 @@ export default function ItemRow({ field, remove, current = null }) {
 
       <Col xs={12} md={4}>
         <Form.Item
-          label={translate('Price')}
+          {...(isItemsNotes ? { label: translate('Price') } : {})}
           name={[field.name, 'price']}
           rules={[{ required: true, message: 'Price is required' }]}
         >
@@ -108,7 +111,7 @@ export default function ItemRow({ field, remove, current = null }) {
       </Col>
 
       <Col xs={12} md={4}>
-        <Form.Item label={translate('Total')}>
+        <Form.Item {...(isItemsNotes ? { label: translate('Total') } : {})}>
           <InputNumber
             readOnly
             className="moneyInput"
@@ -116,10 +119,9 @@ export default function ItemRow({ field, remove, current = null }) {
             min={0}
             controls={false}
             style={{ width: '100%' }}
-          
             addonAfter={money.currency_position === 'after' ? money.currency_symbol : undefined}
             addonBefore={money.currency_position === 'before' ? money.currency_symbol : undefined}
-              formatter={(value) =>
+            formatter={(value) =>
               money.amountFormatter({
                 amount: value,
                 currency_code: money.currency_code,
@@ -128,15 +130,16 @@ export default function ItemRow({ field, remove, current = null }) {
           />
         </Form.Item>
       </Col>
-
-      <Col xs={24} md={6}>
-        <Form.Item label={translate('Notes')} name={[field.name, 'notes']}>
-          <Input.TextArea rows={2} placeholder="Notes..." />
-        </Form.Item>
-      </Col>
+      {isItemsNotes && (
+        <Col xs={24} md={6}>
+          <Form.Item label={translate('Notes')} name={[field.name, 'notes']}>
+            <Input.TextArea rows={2} placeholder="Notes..." />
+          </Form.Item>
+        </Col>
+      )}
 
       <Col xs={2} md={1}>
-        <Form.Item label=" ">
+        <Form.Item >
           <DeleteOutlined
             onClick={() => remove(field.name)}
             style={{ color: 'red', fontSize: 18, cursor: 'pointer' }}
