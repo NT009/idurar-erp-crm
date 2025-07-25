@@ -15,6 +15,7 @@ export default function InvoiceCreate() {
 
   const configPage = {
     entity,
+    isItemsNotes: true,
     ...Labels,
   };
   return <CreateInvoiceModule config={configPage} />;

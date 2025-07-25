@@ -19,7 +19,8 @@ import calculate from '@/utils/calculate';
 import { useSelector } from 'react-redux';
 import SelectAsync from '@/components/SelectAsync';
 
-export default function InvoiceForm({ subTotal = 0, current = null }) {
+export default function InvoiceForm({ subTotal = 0, current = null, config }) {
+  const { isItemsNotes = false } = config;
   const { last_invoice_number } = useSelector(selectFinanceSettings);
 
   if (last_invoice_number === undefined) {
@@ -172,7 +173,7 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
           </Form.Item>
         </Col>
       </Row>
-      <Divider  />
+      <Divider />
       {/* <Row gutter={[12, 12]} style={{ position: 'relative' }}>
         <Col className="gutter-row" span={5}>
           <p>{translate('Item')}</p>
@@ -194,7 +195,7 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
         {(fields, { add, remove }) => (
           <>
             {fields.map((field) => (
-              <ItemRow key={field.key} remove={remove} field={field} current={current}></ItemRow>
+              <ItemRow key={field.key} remove={remove} field={field} current={current} isItemsNotes={isItemsNotes}></ItemRow>
             ))}
             <Form.Item>
               <Button
