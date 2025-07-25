@@ -168,7 +168,7 @@ export default function UpdateItem({ config, UpdateForm }) {
       <Divider dashed />
       <Loading isLoading={isLoading}>
         <Form form={form} layout="vertical" onFinish={onSubmit} onValuesChange={handelValuesChange}>
-          <UpdateForm subTotal={subTotal} current={current} />
+          <UpdateForm subTotal={subTotal} current={current} config={config} />
         </Form>
       </Loading>
     </>
