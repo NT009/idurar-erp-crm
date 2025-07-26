@@ -456,6 +456,7 @@ const lang = {
   created_date:"Created Date",
   resolution:"Resolution",
   add_note:"Add Note",
+  generate_summary:"Generate Summary"
 };
 
 export default lang;
