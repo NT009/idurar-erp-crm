@@ -91,8 +91,19 @@ const invoiceSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
+      notes: {
+        type: String,
+      },
     },
   ],
+  isGenNotesSummaryAvail: {
+    type: Boolean,
+    default: true,
+  },
+  itemsNotesSummary: {
+    type: String,
+    default: '',
+  },
   taxRate: {
     type: Number,
     default: 0,

@@ -255,7 +255,14 @@ html
         padding: 20px 0;
         text-align: center;
       }
- 
+      .notes-text {
+        display: block;
+        max-width: 250px; /* or whatever width fits your layout */
+        white-space: normal; /* allows wrapping */
+        overflow-wrap: break-word;
+        font-size: 10px;
+        color: #666;
+      }
   body
     
       header.clearfix
@@ -304,6 +311,7 @@ html
               tr
                 td.service #{item.itemName}
                   span #{item.description}
+                  span.notes-text #{translate('Notes')} :- #{item.notes}
                 td.qty #{item.quantity}  
                 td.unit  #{moneyFormatter({amount:item.price})}
                 td.total #{moneyFormatter({amount:item.total})}
@@ -316,10 +324,15 @@ html
             tr
               td.grand.total(colspan='3')  #{translate('TOTAL')} 
               td.grand.total #{moneyFormatter({amount:model.total})}
-        
+      if model.itemsNotesSummary
+        .col.col-24.notice-invoice
+          p.strong #{translate('Notes Summary')}:
+          p #{model.itemsNotesSummary}
+      
       .col.col-24
           .space     
       footer.footer-invoice
+
         //- | Invoice was created on a computer and is valid without the signature and seal.
           
 
