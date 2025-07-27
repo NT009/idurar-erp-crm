@@ -2,7 +2,7 @@
 >
 > This `master` branch is a reference copy from the original repository.  
 > **All latest updates, features, and fixes are actively maintained in the [`dev`](https://github.com/your-username/idurar-erp-crm/tree/dev) branch.**  
-> Please switch to the `dev` branch to access the most up-to-date code and documentation:
+> Please switch to the `dev` branch :
 >
 > ```bash
 > git checkout dev
