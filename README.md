@@ -1,3 +1,14 @@
+> ⚠️ **Important Note**
+>
+> This `master` branch is a reference copy from the original repository.  
+> **All latest updates, features, and fixes are actively maintained in the [`dev`](https://github.com/your-username/idurar-erp-crm/tree/dev) branch.**  
+> Please switch to the `dev` branch to access the most up-to-date code and documentation:
+>
+> ```bash
+> git checkout dev
+> ```
+
+
 <div align="center">
     <a href="https://www.idurarapp.com/">
   <img src="https://avatars.githubusercontent.com/u/50052356?s=200&v=4" width="128px" />
