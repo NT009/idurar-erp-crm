@@ -1,0 +1,474 @@
+{
+	"info": {
+		"_postman_id": "aade67f7-de19-41e3-a5ef-c5ab6d917b7e",
+		"name": "idurar-erp-crm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31884752"
+	},
+	"item": [
+		{
+			"name": "Queries",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client\": \"687d1888d99f52cf8b319ba6\",\n    \"description\": \"testing notes\",\n    \"resolution\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit tempus porttitor. Nulla vitae elit libero, a pharetra augue. Donec ullamcorper nulla non metus auctor fringilla.\",\n    \"notes\": [\n        {\n            \"note\": \"test 1\"\n        },\n        {\n            \"note\": \"test 1\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/queries/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"queries",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8888/api/queries/delete/68864973f2a6aedeeb40df96",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"queries",
+								"delete",
+								"68864973f2a6aedeeb40df96"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paginatedList",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}queries/list?page=2&limit=1",
+							"host": [
+								"{{base_url}}queries"
+							],
+							"path": [
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add new notes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}queries/687e1789f006ec5dc95d6073/notes",
+							"host": [
+								"{{base_url}}queries"
+							],
+							"path": [
+								"687e1789f006ec5dc95d6073",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}queries/read/68864973f2a6aedeeb40df96",
+							"host": [
+								"{{base_url}}queries"
+							],
+							"path": [
+								"read",
+								"68864973f2a6aedeeb40df96"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client\": \"687d1888d99f52cf8b319ba6\",\n    \"description\": \"Search results not matching query\",\n    \"resolution\": \"Improved search algorithm with keyword relevance.\",\n    \"status\": \"Open\",\n    \"notes\": [\n      { \"note\": \"Search terms returning irrelevant results 1\" },\n      { \"note\": \"Stop word filtering implemented\" }\n    ]\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}queries/update/68864973f2a6aedeeb40df96",
+							"host": [
+								"{{base_url}}queries"
+							],
+							"path": [
+								"update",
+								"68864973f2a6aedeeb40df96"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "invoice",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}invoice/notesSummary/6882597370644e7f6ee36e3e",
+							"host": [
+								"{{base_url}}invoice"
+							],
+							"path": [
+								"notesSummary",
+								"6882597370644e7f6ee36e3e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"client\": \"687d1888d99f52cf8b319ba6\",\n  \"number\": 106,\n  \"year\": 2025,\n  \"status\": \"sent\",\n  \"date\": \"2025-07-20T12:00:00.000Z\",\n  \"expiredDate\": \"2025-08-20T12:00:00.000Z\",\n  \"notes\": \"Invoice for digital marketing package\",\n  \"items\": [\n    {\n      \"itemName\": \"Google Ads Management\",\n      \"description\": \"Campaign creation and monitoring\",\n      \"quantity\": 1,\n      \"price\": 700,\n      \"notes\": \"Includes 2 ad sets\",\n      \"total\": 700\n    },\n    {\n      \"itemName\": \"Social Media\",\n      \"description\": \"Instagram & Facebook growth\",\n      \"quantity\": 1,\n      \"price\": 350,\n      \"notes\": \"1-month package\",\n      \"total\": 350\n    }\n  ],\n  \"taxRate\": 5\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}invoice/create",
+							"host": [
+								"{{base_url}}invoice"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "nest module",
+			"item": [
+				{
+					"name": "reports/summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/integration/reports/summary",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"integration",
+								"reports",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "webhook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"create from webhook\",\n    \"resolution\": \"testing webhook api\",\n    \"status\": \"Open\",\n    \"notes\": [\n      { \"note\": \"Search terms returning irrelevant results\" },\n      { \"note\": \"Stop word filtering implemented\" }\n    ]\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/integration/webhook",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"integration",
+								"webhook"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Next CRUD App",
+			"item": [
+				{
+					"name": "Projects",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\":\"New Project 2\",\"description\":\"Test\",\"status\":\"pending\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/projects",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"projects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "paginated List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\":\"New Project 2\",\"description\":\"Test\",\"status\":\"pending\"}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/projects?page=1&limit=10&status=in-progress",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"projects"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "status",
+											"value": "in-progress"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/projects/6884c2377cb59440709882f8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"projects",
+										"6884c2377cb59440709882f8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Updated Project Name\",\n        \"description\": \"Test 2\",\n  \"status\": \"in-progress\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/projects/6884c2377cb59440709882f8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"projects",
+										"6884c2377cb59440709882f8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\":\"New Project 2\",\"description\":\"Test\",\"status\":\"pending\"}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/projects/6884c2377cb59440709882f8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"projects",
+										"6884c2377cb59440709882f8"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2NmYTExOGI0ZmU2M2VkMzZlMjZlMiIsImlhdCI6MTc1MzI5NDIzNywiZXhwIjoxNzg0ODMwMjM3fQ.5qFAOGoJ921_KsMdHO5A3-8j2cifJEu6YrmbkwYgrwI",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8888/api/",
+			"type": "default"
+		}
+	]
+}

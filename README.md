@@ -20,6 +20,10 @@ This project follows a structured Git branching strategy to support stable devel
 - All other branches are named according to their respective tasks and functionality as described in the coding test documentation.
 - After completion and testing, these branches are merged into the `dev` branch via pull requests.
 
+### 📬 Postman Collection
+
+The Postman collection for testing available APIs is located in the `postman/` folder.
+
 ## ⚙️ Phase 1: Setup & Baseline Verification
 
 ### 🗂 Project Structure
