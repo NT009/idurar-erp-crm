@@ -1,7 +1,7 @@
 > ⚠️ **Important Note**
 >
 > This `master` branch is a reference copy from the original repository.  
-> **All latest updates, features, and fixes are actively maintained in the [`dev`](https://github.com/your-username/idurar-erp-crm/tree/dev) branch.**  
+> **All latest updates, features, and fixes are actively maintained in the [`dev`](https://github.com/NT009/idurar-erp-crm.git/tree/dev) branch.**  
 > Please switch to the `dev` branch :
 >
 > ```bash
